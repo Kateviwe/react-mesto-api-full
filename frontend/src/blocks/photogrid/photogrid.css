@@ -1,0 +1,12 @@
+.photogrid {
+    max-width: 100%;
+    margin-bottom: 67px;
+    min-height: 18vh;
+}
+
+@media screen and (max-width: 320px) {
+    .photogrid {
+        margin-bottom: 48px;
+        min-height: 20vh;
+    }
+}

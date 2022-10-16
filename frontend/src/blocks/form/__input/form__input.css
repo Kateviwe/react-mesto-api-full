@@ -1,0 +1,13 @@
+.form__input {
+    width: 358px;
+    border: 0;
+    border-bottom: 2px solid rgba(204, 204, 204, 1);
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    color: rgba(204, 204, 204, 1);
+    background-color: rgba(0, 0, 0, 1);
+    margin: 0 0 5px 0;
+    padding: 0 0 6px 0;
+}

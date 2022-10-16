@@ -1,0 +1,17 @@
+.profile__button_purpose_add {
+    border-width: 2px;
+    border-radius: 2px;
+    min-width: 150px;
+    min-height: 50px;
+    justify-self: flex-end;
+    background-image: url(../../../../images/profile-button-add-image.svg);
+    background-size: 22px 22px;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__button_purpose_add {
+        min-width: 282px;
+        background-size: 16px 16px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,12 @@
+.form__span {
+    width: 358px;
+    min-height: 25px;
+    color: #FF0000;
+    display: block;
+    text-align: start;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    opacity: 0;
+}

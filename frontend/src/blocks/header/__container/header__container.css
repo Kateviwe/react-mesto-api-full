@@ -1,0 +1,5 @@
+.header__container {
+    max-width: 738px;
+    display: flex;
+    padding-top: 8px;
+}

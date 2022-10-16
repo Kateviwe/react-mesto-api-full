@@ -1,0 +1,16 @@
+.profile__button_purpose_edit {
+    border-width: 1px;
+    min-width: 24px;
+    min-height: 24px;
+    background-image: url(../../../../images/profile-button-edit-image.svg);
+    background-size: 10px 10px;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__button_purpose_edit {
+        min-width: 18px;
+        min-height: 18px;
+        background-size: 7.5px 7.5px;
+        margin-left: 11px;
+    }
+}

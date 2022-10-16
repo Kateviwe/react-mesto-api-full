@@ -1,0 +1,12 @@
+.photogrid__heading {
+    max-width: 219px;
+    color: rgba(0, 0, 0, 1);
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}

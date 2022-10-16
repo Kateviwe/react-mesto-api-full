@@ -1,0 +1,9 @@
+.popup__button_purpose_change-avatar {
+    margin: 12px 0 34px 0;
+}
+
+@media screen and (max-width: 320px) {
+    .popup__button_purpose_change-avatar {
+        margin: 12px 0 25px 0;
+    }
+}

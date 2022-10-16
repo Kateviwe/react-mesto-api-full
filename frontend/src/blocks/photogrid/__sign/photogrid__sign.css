@@ -1,0 +1,9 @@
+.photogrid__sign {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    max-width: 246px;
+    border-radius: 0 0 10px 10px;
+    padding: 25px 15px 31px 21px;
+}

@@ -1,0 +1,9 @@
+.popup__heading_purpose_change-avatar {
+    padding: 34px 0 43px 0;
+}
+
+@media screen and (max-width: 320px) {
+    .popup__heading_purpose_change-avatar {
+        padding: 25px 0 40px 0;
+    }
+}
