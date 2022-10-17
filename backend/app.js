@@ -15,6 +15,8 @@ const cardsRouter = require('./routes/cards');
 
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
+// Импортируем логгеры (сбор логов при запросах к серверу и ошибках)
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const {
   postNewUser,
@@ -41,6 +43,9 @@ app.use(cookieParser());
 // Подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
+// Подключаем логгер запросов (обязательно до всех обработчиков роутов)
+app.use(requestLogger);
+
 // Роуты без авторизации
 app.post('/signup', postNewUserValidation, postNewUser);
 app.post('/signin', loginValidation, login);
@@ -53,6 +58,9 @@ app.use('/cards', cardsRouter);
 // Обработка несуществующих роутов
 // 404
 app.use('*', (req, res, next) => next(new NotFoundError('Запрашиваемый ресурс не найден')));
+
+// Подключаем логгер ошибок (обязательно после всех обработчиков роутов, но до обработчиков ошибок)
+app.use(errorLogger);
 
 // Обработчик ошибок, возникших при валидации данных с помощью библиотеки Joi
 // Будет обрабатывать только ошибки, которые сгенерировал celebrate
