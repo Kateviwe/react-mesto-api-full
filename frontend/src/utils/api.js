@@ -105,5 +105,5 @@ class Api {
 
 //Создание экземпляра класса Api
 export const api = new Api({
-    url: 'nomoreparties.co/v1/cohort-40'
+    url: 'api.mesto.Kateviwe.nomoredomains.icu/v1/cohort-40'
 });

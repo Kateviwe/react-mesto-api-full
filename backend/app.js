@@ -29,7 +29,7 @@ const {
 } = require('./middlewares/validation');
 
 const { NotFoundError } = require('./errors/not-found-error');
-// вот так
+
 const { PORT = 3000 } = process.env;
 
 // Создадим приложение методом express()
