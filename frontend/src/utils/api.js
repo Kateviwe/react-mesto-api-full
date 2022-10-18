@@ -12,7 +12,7 @@ class Api {
     }
 
     getInfoFromServer() {
-        return fetch(`https://${this._url}/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a'
             }
@@ -21,7 +21,7 @@ class Api {
     }
 
     getCardsFromServer() {
-        return fetch(`https://mesto.${this._url}/cards`, {
+        return fetch(`${this._url}/cards`, {
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a'
             }
@@ -29,7 +29,7 @@ class Api {
     }
     
     changeUserInfo(data) {
-        return fetch(`https://${this._url}/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -44,7 +44,7 @@ class Api {
     }
 
     addNewCard(data) {
-        return fetch(`https://mesto.${this._url}/cards`, {
+        return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -59,7 +59,7 @@ class Api {
     }
 
     deleteCard(idCard) {
-        return fetch(`https://mesto.${this._url}/cards/${idCard}`, {
+        return fetch(`${this._url}/cards/${idCard}`, {
             method: 'DELETE',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -69,7 +69,7 @@ class Api {
     }
 
     putLikeCard(idCard) {
-        return fetch(`https://mesto.${this._url}/cards/${idCard}/likes`, {
+        return fetch(`${this._url}/cards/${idCard}/likes`, {
             method: 'PUT',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -79,7 +79,7 @@ class Api {
     }
 
     deleteLikeCard(idCard) {
-        return fetch(`https://mesto.${this._url}/cards/${idCard}/likes`, {
+        return fetch(`${this._url}/cards/${idCard}/likes`, {
             method: 'DELETE',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -89,7 +89,7 @@ class Api {
     }
 
     changeUserAvatar(data) {
-        return fetch(`https://${this._url}/users/me/avatar`, {
+        return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
@@ -105,7 +105,7 @@ class Api {
 
 //Создание экземпляра класса Api
 export const api = new Api({
-    url: 'api.mesto.Kateviwe.nomoredomains.icu/v1/cohort-40',
+    url: 'https://api.mesto.Kateviwe.nomoredomains.icu',
     headers: {
         'Content-Type': 'application/json'
     }
