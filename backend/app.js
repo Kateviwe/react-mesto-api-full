@@ -53,7 +53,7 @@ app.post('/signin', loginValidation, login);
 // Роуты с авторизацией
 app.use(auth);
 app.use('/users', usersRouter);
-app.use('/', cardsRouter);
+app.use('/cards', cardsRouter);
 
 // Обработка несуществующих роутов
 // 404

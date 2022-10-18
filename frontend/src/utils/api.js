@@ -2,6 +2,7 @@
 class Api {
     constructor(config) {
         this._url = config.url;
+        this._headers = config.headers;
     }
 
     _checkResponse(res) {
@@ -13,28 +14,24 @@ class Api {
 
     getInfoFromServer() {
         return fetch(`${this._url}/users/me`, {
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a'
-            }
+            credentials: 'include',
+            headers: this._headers
         }).then(this._checkResponse); //Передаем только ссылку на метод,
         //так как метод сам вызовется, ведь в then надо передавать именно функцию, а не ее вызов
     }
 
     getCardsFromServer() {
         return fetch(`${this._url}/cards`, {
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a'
-            }
+            credentials: 'include',
+            headers: this._headers
         }).then(this._checkResponse);
     }
     
     changeUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            },
+            credentials: 'include',
+            headers: this._headers,
             //В теле будут указаны новые данные пользователя
             body: JSON.stringify({
                 name: data.name,
@@ -46,10 +43,8 @@ class Api {
     addNewCard(data) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            },
+            credentials: 'include',
+            headers: this._headers,
             //В теле будут указаны новые параметры создаваемой карточки
             body: JSON.stringify({
                 name: data.nameCard,
@@ -61,40 +56,32 @@ class Api {
     deleteCard(idCard) {
         return fetch(`${this._url}/cards/${idCard}`, {
             method: 'DELETE',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            }
+            credentials: 'include',
+            headers: this._headers
         }).then(this._checkResponse);
     }
 
     putLikeCard(idCard) {
         return fetch(`${this._url}/cards/${idCard}/likes`, {
             method: 'PUT',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            }
+            credentials: 'include',
+            headers: this._headers
         }).then(this._checkResponse);
     }
 
     deleteLikeCard(idCard) {
         return fetch(`${this._url}/cards/${idCard}/likes`, {
             method: 'DELETE',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            }
+            credentials: 'include',
+            headers: this._headers
         }).then(this._checkResponse);
     }
 
     changeUserAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
-            headers: {
-                authorization: '55b0d581-ee83-4eea-b2f9-f147c6af6c4a',
-                'Content-Type': 'application/json'
-            },
+            credentials: 'include',
+            headers: this._headers,
             //В теле будет указана ссылка на новый аватар пользователя
             body: JSON.stringify({
                 avatar: data.avatar
