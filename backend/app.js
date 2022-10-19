@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 // и преобразования строки в объект
 const cookieParser = require('cookie-parser');
 
-const cors = require('cors');
 // Подключим обработчик ошибок celebrate
 const { errors } = require('celebrate');
 
@@ -19,6 +18,7 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 // Импортируем логгеры (сбор логов при запросах к серверу и ошибках)
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/cors');
 
 const {
   postNewUser,
