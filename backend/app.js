@@ -37,7 +37,7 @@ const { PORT = 3000 } = process.env;
 // Создадим приложение методом express()
 const app = express();
 
-app.use(cors());
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Подключим, и куки станут доступны в объекте req.cookies.jwt
