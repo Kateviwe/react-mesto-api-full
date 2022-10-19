@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
   // Проверим, есть ли источник запроса среди разрешённых
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    // С опцией credentials токен передает браузер, который сохраняется в куках
     res.header('Access-Control-Allow-Credentials', true);
   }
 
