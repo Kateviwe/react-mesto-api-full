@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
   // Проверим, есть ли источник запроса среди разрешённых
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
   }
 
   if (method === 'OPTIONS') {
