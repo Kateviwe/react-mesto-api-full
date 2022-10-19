@@ -14,6 +14,7 @@ class Api {
 
     getInfoFromServer() {
         return fetch(`${this._url}/users/me`, {
+            // Включает отправку авторизационных данных в fetch (использование куки)
             credentials: 'include',
             headers: this._headers
         }).then(this._checkResponse); //Передаем только ссылку на метод,
