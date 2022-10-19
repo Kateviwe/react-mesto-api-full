@@ -2,8 +2,8 @@
 
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'http://mesto.frontend.kateviwe.nomoredomains.icu/sign-in',
-  'https://mesto.frontend.kateviwe.nomoredomains.icu/sign-in',
+  'http://mesto.frontend.kateviwe.nomoredomains.icu',
+  'https://mesto.frontend.kateviwe.nomoredomains.icu',
 ];
 
 module.exports = (req, res, next) => {
