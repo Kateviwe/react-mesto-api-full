@@ -164,9 +164,8 @@ function App() {
     }
 
     function startWork () {
-        //Проверка наличия у пользователя токена
-        const jwt = localStorage.getItem('token');
-        auth.getContentFromToken(jwt)
+        // Проверка авторизации
+        auth.getContentFromToken()
         .then((res) => {
             if(res) {
                 setLoggedIn(true);
