@@ -70,7 +70,7 @@ function App() {
     React.useEffect(() => {
         api.getCardsFromServer()
             .then((initialCards) => {
-                setCards(initialCards);
+                setCards(initialCards.reverse());
             })
             .catch((err) => console.log(err))
     }, []); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
@@ -78,7 +78,7 @@ function App() {
     
     function handleCardLike(card) {
         //Проверим, есть ли уже лайк на данной карточке
-        const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUser._id);
+        const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard === currentUser._id);
         //Создаем запрос в API и получаем обновлённые данные карточки
         if (isLiked) {
             api.deleteLikeCard(card._id)
