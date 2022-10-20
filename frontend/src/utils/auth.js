@@ -13,6 +13,7 @@ export const register = (email, password) => {
         method: 'POST',
         credentials: 'include',
         headers: {
+            // Данный заголовок говорит серверу, что клиент ожидает получить ответ в JSON формате
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },

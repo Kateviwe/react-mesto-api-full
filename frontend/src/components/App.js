@@ -163,24 +163,23 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    function checkToken() {
+    function startWork () {
         //Проверка наличия у пользователя токена
-        if(localStorage.getItem('token')) {
-            const jwt = localStorage.getItem('token');
-            auth.getContentFromToken(jwt)
-            .then((res) => {
-                if(res) {
-                    setLoggedIn(true);
-                    setCurrentEmail(res.data.email);
-                    history.push('/');
-                }
-            })
-            .catch((err) => console.log(err));
-        }
+        const jwt = localStorage.getItem('token');
+        auth.getContentFromToken(jwt)
+        .then((res) => {
+            if(res) {
+                setLoggedIn(true);
+                setCurrentEmail(res.data.email);
+                history.push('/');
+            }
+        })
+        .catch((err) => console.log(err));
+
     }
 
     React.useEffect(() => {
-        checkToken();
+        startWork();
     }, []);
 
     function getRegisteredIn() {
@@ -193,7 +192,7 @@ function App() {
 
     function handleLoggedIn() {
         setLoggedIn(true);
-        checkToken();
+        startWork();
     }
 
     function handleLoggedOut() {
