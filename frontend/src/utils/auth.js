@@ -13,6 +13,7 @@ export const register = (email, password) => {
         method: 'POST',
         credentials: 'include',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -28,6 +29,7 @@ export const authorize = (email, password) => {
         method: 'POST',
         credentials: 'include',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -43,8 +45,7 @@ export const getContentFromToken = (token) => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Content-Type': 'application/json'
         }
     })
     .then(checkResponse);
