@@ -163,9 +163,9 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    function startWork () {
-        // Проверка авторизации
-        auth.getContentFromToken()
+    function checkToken() {
+        const jwt = localStorage.getItem('token');
+        auth.getContentFromToken(jwt)
         .then((res) => {
             if(res) {
                 setLoggedIn(true);
@@ -178,7 +178,7 @@ function App() {
     }
 
     React.useEffect(() => {
-        startWork();
+        checkToken();
     }, []);
 
     function getRegisteredIn() {
@@ -191,7 +191,7 @@ function App() {
 
     function handleLoggedIn() {
         setLoggedIn(true);
-        startWork();
+        checkToken();
     }
 
     function handleLoggedOut() {
