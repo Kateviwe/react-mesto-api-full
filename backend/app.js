@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Подключаемся к серверу mongo
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect('mongodb://localhost:27017/pr15');
 
 // Подключаем логгер запросов (обязательно до всех обработчиков роутов)
 app.use(requestLogger);
