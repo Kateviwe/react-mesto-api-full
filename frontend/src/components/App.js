@@ -168,6 +168,8 @@ function App() {
         auth.getContentFromToken(jwt)
         .then((res) => {
             if(res) {
+                console.log(res);
+                console.log(res.data);
                 setLoggedIn(true);
                 setCurrentEmail(res.data.email);
                 history.push('/');
