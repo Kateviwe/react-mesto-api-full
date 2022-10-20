@@ -163,15 +163,12 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    function checkToken() {
-        const jwt = localStorage.getItem('token');
-        auth.getContentFromToken(jwt)
+    function getUserEmail () {
+        auth.getContentFromToken()
         .then((res) => {
             if(res) {
-                console.log(res);
-                console.log(res.data);
                 setLoggedIn(true);
-                setCurrentEmail(res.data.email);
+                setCurrentEmail(res.email);
                 history.push('/');
             }
         })
@@ -180,7 +177,7 @@ function App() {
     }
 
     React.useEffect(() => {
-        checkToken();
+        getUserEmail();
     }, []);
 
     function getRegisteredIn() {
@@ -193,7 +190,7 @@ function App() {
 
     function handleLoggedIn() {
         setLoggedIn(true);
-        checkToken();
+        getUserEmail();
     }
 
     function handleLoggedOut() {
