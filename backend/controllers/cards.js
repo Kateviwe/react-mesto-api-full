@@ -9,7 +9,7 @@ const Card = require('../models/card');
 
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
-    .populate(['owner', 'likes'])
+    .populate('likes')
     .then((cards) => res.send(cards))
     // catch(next) аналогична catch(err => next(err))
     .catch(next);
@@ -62,13 +62,9 @@ module.exports.putLikeToCard = (req, res, next) => {
     $addToSet: { likes: req.user._id },
     // "new: true" вернет видоизмененный массив, а не оригинал
   }, { new: true })
-    .populate(['owner', 'likes'])
-    .then((card) => {
-      if (!card) {
-        throw new NotFoundError('Запрашиваемая карточка не найдена');
-      }
-      res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` });
-    })
+    .populate('likes')
+    .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
+    .then((card) => res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` }))
     .catch((err) => {
       if (err.name === 'CastError') {
         // 400
@@ -84,7 +80,7 @@ module.exports.deleteLikeOfCard = (req, res, next) => {
     // Если пользователь уже лайкал карточку - удалим лайк, иначе - нет
     $pull: { likes: req.user._id },
   }, { new: true })
-    .populate(['owner', 'likes'])
+    .populate('likes')
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
     .then((card) => res.send({ message: `Вы убрали лайк с карточки с id: ${card._id}` }))
     .catch((err) => {
