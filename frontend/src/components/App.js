@@ -78,8 +78,6 @@ function App() {
     
     function handleCardLike(card) {
         //Проверим, есть ли уже лайк на данной карточке
-        console.dir(card);
-        console.dir(card.likes);
         const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUser._id);
         //Создаем запрос в API и получаем обновлённые данные карточки
         if (isLiked) {
@@ -88,7 +86,6 @@ function App() {
                     setCards(initialArr => {
                         return initialArr.map(itemCard => (itemCard._id === card._id ? newCard : itemCard));
                     });
-                    console.dir(cards);
                 })
                 .catch((err) => console.log(err)); 
         } else {
@@ -97,7 +94,6 @@ function App() {
                     setCards(initialArr => {
                         return initialArr.map(itemCard => (itemCard._id === card._id ? newCard : itemCard));
                     });
-                    console.dir(cards);
                 })
                 .catch((err) => console.log(err)); 
         };
