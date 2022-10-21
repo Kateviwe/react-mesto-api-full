@@ -24,7 +24,7 @@ module.exports.deleteNecessaryCard = (req, res, next) => {
     .then((card) => {
       if (JSON.stringify(card.owner) === JSON.stringify(req.user._id)) {
         card.remove();
-        return res.send({ message: `Удалена карточка с id: ${card._id}` });
+        return res.send(card);
       }
       // 403
       next(new NoPermissionError('Удаление невозможно: это не ваша карточка'));
@@ -82,7 +82,7 @@ module.exports.deleteLikeOfCard = (req, res, next) => {
   }, { new: true })
     .populate(['owner', 'likes'])
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
-    .then((card) => res.send({ message: `Вы убрали лайк с карточки с id: ${card._id}` }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         // 400
