@@ -35,7 +35,7 @@ function Card({
     //Проверим, стоит ли лайк на карточке от текущего пользователя (исходное состояние)
     console.dir(card.likes);
     console.dir(card);
-    const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUserInfoContext._id);
+    const isLiked = likesCard.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUserInfoContext._id);
     //Создадим переменные, которые будут отвечать за класс у урны и лайка карточки соответственно
     const cardDeleteButtonClassName = `photogrid__urn ${isOwn ? 'photogrid__urn_visible' : 'photogrid__urn_hidden'}`;
     const cardLikeButtonClassName = `photogrid__like ${isLiked && 'photogrid__like_active'}`;
