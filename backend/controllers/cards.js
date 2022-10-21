@@ -57,8 +57,6 @@ module.exports.postNewCard = (req, res, next) => {
 // "new: true" - вернет видоизмененный массив, а не оригинал
 module.exports.putLikeToCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, {
-    console.log(`В cards.js- ${likes}`);
-    console.log(`В cards.js req.user- ${req.user}`);
     // Если пользователь еще не лайкал карточку - добавим лайк, иначе - нет
     $addToSet: { likes: req.user._id },
     // "new: true" вернет видоизмененный массив, а не оригинал
@@ -66,13 +64,12 @@ module.exports.putLikeToCard = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
     .then((card) => res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` }))
     .catch((err) => {
+      console.log(`В cards2.js req.user- ${req.user}`);
       if (err.name === 'CastError') {
         // 400
         next(new BadRequestError('Некорректный id карточки'));
       } else {
         next(err);
-        console.log(`В cards2.js- ${likes}`);
-        console.log(`В cards2.js req.user- ${req.user}`);
       }
     });
 };
