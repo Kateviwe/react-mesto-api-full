@@ -41,6 +41,8 @@ function Login({
             //По факту проверяем зарегистрирован ли такой пользователь
             console.log(res);
             if(res.token){
+                console.log(res);
+                console.log(res.token);
                 localStorage.setItem('token', res.token);
                 return res;
             }
