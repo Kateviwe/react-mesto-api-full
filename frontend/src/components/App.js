@@ -88,6 +88,7 @@ function App() {
                     setCards(initialArr => {
                         return initialArr.map(itemCard => (itemCard._id === card._id ? newCard : itemCard));
                     });
+                    console.dir(cards);
                 })
                 .catch((err) => console.log(err)); 
         } else {
@@ -96,6 +97,7 @@ function App() {
                     setCards(initialArr => {
                         return initialArr.map(itemCard => (itemCard._id === card._id ? newCard : itemCard));
                     });
+                    console.dir(cards);
                 })
                 .catch((err) => console.log(err)); 
         };
