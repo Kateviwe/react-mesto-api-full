@@ -37,13 +37,14 @@ function Login({
     function handleLoginFormSubmit(e) {
         e.preventDefault();
         auth.authorize(email, password)
-        // .then((res) => {
-        //     //По факту проверяем зарегистрирован ли такой пользователь
-        //     if(res.token){
-        //         localStorage.setItem('token', res.token);
-        //         return res;
-        //     }
-        // })
+        .then((res) => {
+            //По факту проверяем зарегистрирован ли такой пользователь
+            console.log(res);
+            if(res.token){
+                localStorage.setItem('token', res.token);
+                return res;
+            }
+        })
         .then((res) => {
             if(res) {
                 onLogin();
