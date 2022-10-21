@@ -78,6 +78,8 @@ function App() {
     
     function handleCardLike(card) {
         //Проверим, есть ли уже лайк на данной карточке
+        console.dir(card);
+        console.dir(card.likes);
         const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard === currentUser._id);
         //Создаем запрос в API и получаем обновлённые данные карточки
         if (isLiked) {
