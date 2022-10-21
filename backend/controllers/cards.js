@@ -64,7 +64,6 @@ module.exports.putLikeToCard = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
     .then((card) => res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` }))
     .catch((err) => {
-      console.log(`В cards2.js req.user- ${req.user}`);
       if (err.name === 'CastError') {
         // 400
         next(new BadRequestError('Некорректный id карточки'));
