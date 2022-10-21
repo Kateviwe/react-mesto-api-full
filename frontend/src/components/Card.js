@@ -24,20 +24,14 @@ function Card({
     //Обработчик клика по лайку
     function handleLikeClick() {
         onCardLike(card);
-        console.log(card);
-        console.log(card.owner);
     }
     //Обработчик клика по урне карточки для ее удаления
     function handleDeleteClick() {
         onCardDelete(card);
-        console.log(card);
-        console.log(card.owner);
     }
 
     //Определим, является ли текущий пользователь владельцем карточки
-    console.log(card);
-    console.log(card.owner);
-    const isOwn = card.owner._id === currentUserInfoContext._id;
+    const isOwn = card.owner === currentUserInfoContext._id;
     //Проверим, стоит ли лайк на карточке от текущего пользователя (исходное состояние)
     const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUserInfoContext._id);
     //Создадим переменные, которые будут отвечать за класс у урны и лайка карточки соответственно
