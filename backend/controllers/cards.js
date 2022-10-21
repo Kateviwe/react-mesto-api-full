@@ -63,8 +63,12 @@ module.exports.putLikeToCard = (req, res, next) => {
     // "new: true" вернет видоизмененный массив, а не оригинал
   }, { new: true })
     .populate('likes')
-    .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
-    .then((card) => res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` }))
+    .then((card) => {
+      if (!card) {
+        throw new NotFoundError('Запрашиваемая карточка не найдена');
+      }
+      res.send({ message: `Вы поставили лайк карточке с id: ${card._id}` });
+    })
     .catch((err) => {
       if (err.name === 'CastError') {
         // 400
