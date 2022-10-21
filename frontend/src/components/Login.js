@@ -38,11 +38,7 @@ function Login({
         e.preventDefault();
         auth.authorize(email, password)
         .then((res) => {
-            //По факту проверяем зарегистрирован ли такой пользователь
-            if(res.token){
-                localStorage.setItem('token', res.token);
-                return res;
-            }
+            return res;
         })
         .then((res) => {
             if(res) {

@@ -9,7 +9,7 @@ const Card = require('../models/card');
 
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
-    // .populate('likes')
+    .populate('likes')
     .then((cards) => res.send(cards))
     // catch(next) аналогична catch(err => next(err))
     .catch(next);
