@@ -166,7 +166,7 @@ function App() {
     function getUserEmail () {
         auth.getContentFromToken()
         .then((res) => {
-            if(res) {
+            if(res.email) {
                 setLoggedIn(true);
                 setCurrentEmail(res.email);
                 history.push('/');
