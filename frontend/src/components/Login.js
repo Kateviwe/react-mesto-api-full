@@ -50,6 +50,7 @@ function Login({
         .then((res) => {
             console.log(res);
             if(res) {
+                console.log(res);
                 onLogin();
             }
         })
