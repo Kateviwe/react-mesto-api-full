@@ -166,7 +166,7 @@ function App() {
     function getUserEmail () {
         auth.getContentFromToken()
         .then((res) => {
-            if(res.email) {
+            if(res) {
                 setLoggedIn(true);
                 setCurrentEmail(res.email);
                 history.push('/');
@@ -194,7 +194,6 @@ function App() {
     }
 
     function handleLoggedOut() {
-        localStorage.removeItem('token');
         setLoggedIn(false);
     }
 
