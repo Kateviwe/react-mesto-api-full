@@ -55,6 +55,9 @@ app.post('/signin', loginValidation, login);
 
 // Роуты с авторизацией
 app.use(auth);
+app.get('/notuse', (req, res) => {
+  res.clearCookie('jwt');
+});
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
