@@ -34,8 +34,7 @@ function Header({
                     {loggedIn && (<h2 className="header__email">{email}</h2>)}
                     {loggedIn && (path.pathname === '/' &&
                         <Link
-                            // to='/sign-in'
-                            to='/notuse'
+                            to='/sign-in'
                             className="header__link">
                             <button
                                 type='button'

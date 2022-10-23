@@ -51,3 +51,15 @@ export const getContentFromToken = () => {
     })
     .then(checkResponse);
 };
+
+export const getUserExitFromProfile = () => {
+    return fetch(`${BASE_URL}/deletecookies`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(checkResponse);
+};

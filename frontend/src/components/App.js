@@ -24,6 +24,9 @@ import AddPlacePopup from './AddPlacePopup';
 //Импорт экземпляра класса Api (работа с сервером)
 import { api } from '../utils/api';
 
+// Импорт запроса на удаление куки при выходе пользователя из профиля
+import { getUserExitFromProfile } from '../utils/auth';
+
 //Импорт объекта контекста
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -173,7 +176,16 @@ function App() {
             }
         })
         .catch((err) => console.log(err));
+    }
 
+    function getCookiesDelete () {
+        auth.getUserExitFromProfile()
+        .then((res) => {
+            if(res) {
+                setLoggedIn(false);
+            }
+        })
+        .catch((err) => console.log(err));
     }
 
     React.useEffect(() => {
@@ -195,6 +207,7 @@ function App() {
 
     function handleLoggedOut() {
         setLoggedIn(false);
+        getCookiesDelete();
     }
 
     return (
