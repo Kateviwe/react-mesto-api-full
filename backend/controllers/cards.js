@@ -45,7 +45,10 @@ module.exports.postNewCard = (req, res, next) => {
 
   Card.create({ name, link, owner: req.user._id })
     .populate(['owner', 'likes'])
-    .then((card) => res.send(card))
+    .then((card) => {
+      console.dir(card);
+      res.send(card);
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         // 400
