@@ -53,8 +53,8 @@ export const getContentFromToken = () => {
 };
 
 export const getUserExitFromProfile = () => {
-    return fetch(`${BASE_URL}/deletecookies`, {
-        method: 'GET',
+    return fetch(`${BASE_URL}/signout`, {
+        method: 'POST',
         credentials: 'include',
         headers: {
             'Accept': 'application/json',

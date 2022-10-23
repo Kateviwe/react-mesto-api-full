@@ -57,7 +57,7 @@ app.post('/signin', loginValidation, login);
 // Роуты с авторизацией
 app.use(auth);
 // Запрос на api с '/deletecookies'
-app.get('/deletecookies', getCookiesDelete);
+app.post('/signout', getCookiesDelete);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
