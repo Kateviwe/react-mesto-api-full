@@ -4,6 +4,8 @@
 const allowedCors = [
   'http://mesto.frontend.kateviwe.nomoredomains.icu',
   'https://mesto.frontend.kateviwe.nomoredomains.icu',
+  'http://localhost:7777',
+  'http://127.0.0.1:7777',
 ];
 
 module.exports = (req, res, next) => {

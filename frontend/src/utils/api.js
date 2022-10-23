@@ -1,3 +1,4 @@
+import BASE_URL from './constants';
 //Класс, который отвечает за создание запросов на сервер и принятие ответов от сервера
 class Api {
     constructor(config) {
@@ -93,7 +94,7 @@ class Api {
 
 //Создание экземпляра класса Api
 export const api = new Api({
-    url: 'https://api.mesto.Kateviwe.nomoredomains.icu',
+    url: BASE_URL,
     headers: {
         'Content-Type': 'application/json'
     }

@@ -1,5 +1,5 @@
 //Авторизация пользователей
-export const BASE_URL = 'https://api.mesto.Kateviwe.nomoredomains.icu';
+import BASE_URL from './constants';
 
 const checkResponse = (res) => {
     if (res.ok) {
