@@ -31,7 +31,7 @@ function Card({
     }
 
     //Определим, является ли текущий пользователь владельцем карточки
-    const isOwn = card.owner === currentUserInfoContext._id;
+    const isOwn = card.owner._id === currentUserInfoContext._id;
     //Проверим, стоит ли лайк на карточке от текущего пользователя (исходное состояние)
     const isLiked = card.likes.some(elementLikesArrayCard => elementLikesArrayCard._id === currentUserInfoContext._id);
     //Создадим переменные, которые будут отвечать за класс у урны и лайка карточки соответственно
