@@ -44,7 +44,7 @@ module.exports.postNewCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((doc) => { doc.populate(['owner', 'likes']).exec(); })
+    .then((doc) => { doc.populate(['owner', 'likes']).save(); })
     .then((card) => {
       console.dir(card);
       res.send(card);
