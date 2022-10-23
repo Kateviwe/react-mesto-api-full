@@ -6,7 +6,7 @@ module.exports = (err, req, res, next) => {
   if (err.statusCode) {
     res.status(err.statusCode).send({ message: err.message });
   } else {
-    res.status(ERROR_CODE).send({ message: 'Произошла ошибка' });
+    res.status(ERROR_CODE).send({ message: `Произошла ошибка: ${err.message}` });
   }
   next();
 };
