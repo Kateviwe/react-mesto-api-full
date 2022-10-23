@@ -42,9 +42,10 @@ module.exports.deleteNecessaryCard = (req, res, next) => {
 module.exports.postNewCard = (req, res, next) => {
   // Получим из объекта запроса название и ссылку на карточку
   const { name, link } = req.body;
+  const owner = req.user._id;
 
-  Card.create({ name, link, owner: req.user._id })
-    .then((doc) => { doc.populate(['owner', 'likes']).execPopulate(); })
+  Card.create({ name, link, owner })
+    .then((doc) => doc.populate(['owner', 'likes']).execPopulate())
     .then((card) => {
       res.send(card);
     })
