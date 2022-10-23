@@ -24,9 +24,6 @@ import AddPlacePopup from './AddPlacePopup';
 //Импорт экземпляра класса Api (работа с сервером)
 import { api } from '../utils/api';
 
-// Импорт запроса на удаление куки при выходе пользователя из профиля
-import { getUserExitFromProfile } from '../utils/auth';
-
 //Импорт объекта контекста
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -64,7 +61,7 @@ function App() {
                 setCurrentUser(userInfoObject);
             })
             .catch((err) => console.log(err))
-    }, []); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
+    }, [loggedIn]); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
             //У нас массив пустой, следовательно, такой эффект будет вызван всего один раз (монтирование)
 
     //Переменная состояния (стейта)
@@ -76,7 +73,7 @@ function App() {
                 setCards(initialCards.reverse());
             })
             .catch((err) => console.log(err))
-    }, []); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
+    }, [loggedIn]); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
             //У нас массив пустой, следовательно, такой эффект будет вызван всего один раз (монтирование)
     
     function handleCardLike(card) {
@@ -181,9 +178,7 @@ function App() {
     function getCookiesDelete () {
         auth.getUserExitFromProfile()
         .then((res) => {
-            if(res) {
-                setLoggedIn(false);
-            }
+            setLoggedIn(false);
         })
         .catch((err) => console.log(err));
     }
