@@ -50,6 +50,13 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 // Подключаем логгер запросов (обязательно до всех обработчиков роутов)
 app.use(requestLogger);
 
+// Краш-тест сервера
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 // Роуты без авторизации
 app.post('/signup', postNewUserValidation, postNewUser);
 app.post('/signin', loginValidation, login);
