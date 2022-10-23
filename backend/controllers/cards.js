@@ -45,7 +45,7 @@ module.exports.postNewCard = (req, res, next) => {
   const owner = req.user._id;
 
   Card.create({ name, link, owner })
-    .then((doc) => doc.populate(['owner', 'likes']).execPopulate())
+    .then((doc) => doc.populate(['owner', 'likes']))
     .then((card) => {
       res.send(card);
     })
