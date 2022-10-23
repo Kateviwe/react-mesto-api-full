@@ -23,6 +23,7 @@ const cors = require('./middlewares/cors');
 const {
   postNewUser,
   login,
+  getCookiesDelete,
 } = require('./controllers/users');
 
 const {
@@ -56,9 +57,7 @@ app.post('/signin', loginValidation, login);
 // Роуты с авторизацией
 app.use(auth);
 // Запрос на api с '/deletecookies'
-app.get('/deletecookies', (req, res) => {
-  res.clearCookie('jwt');
-});
+app.get('/deletecookies', getCookiesDelete);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 

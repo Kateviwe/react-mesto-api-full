@@ -180,3 +180,7 @@ module.exports.getInfoAboutMe = (req, res, next) => {
       }
     });
 };
+
+module.exports.getCookiesDelete = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Вы вышли из профиля' });
+};
