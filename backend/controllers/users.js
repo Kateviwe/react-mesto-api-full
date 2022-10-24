@@ -55,8 +55,7 @@ module.exports.postNewUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.code === 11000) {
-        // 'ConflictError'
+      if (err.name === 'ConflictError') {
         // 409
         next(new UserDuplicationError('Пользователь с таким email уже существует'));
         // ValidationError - ошибка валидации в mongoose
@@ -152,12 +151,7 @@ module.exports.getInfoAboutMe = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'CastError') {
-        // 400
-        next(new BadRequestError('Некорректный id пользователя'));
-      } else {
-        next(err);
-      }
+      next(err);
     });
 };
 
