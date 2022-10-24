@@ -90,41 +90,6 @@ module.exports.postNewUser = (req, res, next) => {
     });
 };
 
-// module.exports.postNewUser = (req, res, next) => {
-//   // Получим из объекта запроса имя, характеристику, аватар пользователя, email и пароль
-//   const {
-//     name,
-//     about,
-//     avatar,
-//     email,
-//     password,
-//   } = req.body;
-
-//   // Применим метод hash для хеширования пароля пользователя
-//   bcrypt.hash(password, 10)
-//     .then((hash) => User.create({
-//       name, about, avatar, email, password: hash,
-//     }))
-//     .then((user) => {
-//       res.send({
-//         name, about, avatar, email, _id: user._id,
-//       });
-//     })
-//     .catch((err) => {
-//       if (err.name === 'ConflictError') {
-//         // 409
-//         next(new UserDuplicationError('Пользователь с таким email уже существует'));
-//         // ValidationError - ошибка валидации в mongoose
-//         // Валидация делается автоматически по схеме в папке models
-//       } else if (err.name === 'ValidationError') {
-//         // 400
-//         next(new IncorrectInputError(`Некорректные входные данные. ${err}`));
-//       } else {
-//         next(err);
-//       }
-//     });
-// };
-
 module.exports.patchUserInfo = (req, res, next) => {
   // Получим из объекта запроса имя и характеристику пользователя
   const { name, about } = req.body;

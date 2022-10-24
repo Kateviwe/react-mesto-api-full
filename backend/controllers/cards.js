@@ -23,9 +23,8 @@ module.exports.deleteNecessaryCard = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
     .then((card) => {
       if (JSON.stringify(card.owner) === JSON.stringify(req.user._id)) {
-        // Асинхронный метод (ждем завершения операции) => используем then
-        return card.remove()
-          .then(() => res.send({ message: 'Карточка удалена' }));
+        card.remove();
+        return res.send(card);
       }
       // 403
       next(new NoPermissionError('Удаление невозможно: это не ваша карточка'));
@@ -91,6 +90,11 @@ module.exports.deleteLikeOfCard = (req, res, next) => {
       res.send(card);
     })
     .catch((err) => {
-      next(err);
+      if (err.name === 'CastError') {
+        // 400
+        next(new BadRequestError('Некорректный id карточки'));
+      } else {
+        next(err);
+      }
     });
 };
