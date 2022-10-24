@@ -33,7 +33,7 @@ const {
 
 const { NotFoundError } = require('./errors/not-found-error');
 
-const { PORT = 5555 } = process.env;
+const { PORT = 3000 } = process.env;
 
 // Создадим приложение методом express()
 const app = express();
