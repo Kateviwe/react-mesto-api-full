@@ -44,46 +44,25 @@ module.exports.postNewUser = (req, res, next) => {
     password,
   } = req.body;
 
-  // Проверим, может пользователь с таким Email уже существует
-  User.find({ email })
-    .then((userArray) => {
-      // Даже если такой пользователь не существует, нам вернется пустой массив
-      // Проверим длину массива, чтобы понять, нашелся ли такой пользователь
-      if (userArray.length > 0) {
-        // Отклоняем промис и перебрасываем на catch
-        return Promise.reject(new UserDuplicationError('Пользователь с таким email уже существует'));
-      }
-      // Применим метод hash для хеширования пароля пользователя
-      bcrypt.hash(password, 10)
-        .then((hash) => {
-          User.create({
-            name,
-            about,
-            avatar,
-            email,
-            password: hash,
-          })
-            .then((user) => {
-              res.send({
-                name, about, avatar, email, _id: user._id,
-              });
-            })
-            .catch((err) => {
-              // ValidationError - ошибка валидации в mongoose
-              // Валидация делается автоматически по схеме в папке models
-              if (err.name === 'ValidationError') {
-                // 400
-                next(new IncorrectInputError(`Некорректные входные данные. ${err}`));
-              } else {
-                next(err);
-              }
-            });
-        });
+  // Применим метод hash для хеширования пароля пользователя
+  bcrypt.hash(password, 10)
+    .then((hash) => User.create({
+      name, about, avatar, email, password: hash,
+    }))
+    .then((user) => {
+      res.send({
+        name, about, avatar, email, _id: user._id,
+      });
     })
     .catch((err) => {
       if (err.name === 'ConflictError') {
         // 409
         next(new UserDuplicationError('Пользователь с таким email уже существует'));
+        // ValidationError - ошибка валидации в mongoose
+        // Валидация делается автоматически по схеме в папке models
+      } else if (err.name === 'ValidationError') {
+        // 400
+        next(new IncorrectInputError(`Некорректные входные данные. ${err}`));
       } else {
         next(err);
       }
