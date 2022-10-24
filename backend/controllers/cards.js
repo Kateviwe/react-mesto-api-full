@@ -91,11 +91,6 @@ module.exports.deleteLikeOfCard = (req, res, next) => {
       res.send(card);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        // 400
-        next(new BadRequestError('Некорректный id карточки'));
-      } else {
-        next(err);
-      }
+      next(err);
     });
 };
