@@ -151,7 +151,12 @@ module.exports.getInfoAboutMe = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
     .then((user) => res.send(user))
     .catch((err) => {
-      next(err);
+      if (err.name === 'CastError') {
+        // 400
+        next(new BadRequestError('Некорректный id пользователя'));
+      } else {
+        next(err);
+      }
     });
 };
 
