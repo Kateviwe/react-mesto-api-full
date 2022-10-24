@@ -55,7 +55,8 @@ module.exports.postNewUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === 'ConflictError') {
+      if (err.code === 11000) {
+        // 'ConflictError'
         // 409
         next(new UserDuplicationError('Пользователь с таким email уже существует'));
         // ValidationError - ошибка валидации в mongoose
