@@ -167,19 +167,22 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    function getUserEmail() {
-         auth.getContentFromToken()
-        .then((res) => {
-            if(res) {
+    const getUserEmail = React.useCallback(() => {
+        try {
+            const tokenGetResult = auth.getContentFromToken();
+            if(tokenGetResult) {
                 setLoggedIn(true);
-                setCurrentEmail(res.email);
+                setCurrentEmail(tokenGetResult.email);
                 history.push('/');
+            } else {
+                setLoggedIn(false);
             }
-        })
-        .catch((err) => console.log(err));
-    }
+        } catch {
+            console.log('Возникла ошибка')
+        }
+    }, [history])
 
-    function getCookiesDelete() {
+    function getCookiesDelete () {
         auth.getUserExitFromProfile()
         .then((res) => {
             setLoggedIn(false);
@@ -189,7 +192,7 @@ function App() {
 
     React.useEffect(() => {
         getUserEmail();
-    }, []);
+    }, [getUserEmail]);
 
     function getRegisteredIn() {
         setRegisteredIn(true);
