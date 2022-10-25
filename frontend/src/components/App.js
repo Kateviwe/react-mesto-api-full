@@ -175,7 +175,11 @@ function App() {
                 setCurrentEmail(res.email);
                 history.push('/');
             }
+            else {
+                setLoggedIn(false);
+            }
         })
+        
         .catch((err) => console.log(err));
     }, [history])
 
@@ -188,8 +192,10 @@ function App() {
     }
 
     React.useEffect(() => {
-        getUserEmail();
-    }, [getUserEmail]);
+        if (loggedIn) {
+            getUserEmail();
+        }
+    }, [loggedIn]);
 
     function getRegisteredIn() {
         setRegisteredIn(true);
@@ -200,7 +206,7 @@ function App() {
     }
 
     function handleLoggedIn() {
-        setLoggedIn(true);
+        // setLoggedIn(true);
         getUserEmail();
     }
 
