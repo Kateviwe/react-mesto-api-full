@@ -168,16 +168,18 @@ function App() {
     }
 
     const getUserEmail = React.useCallback(() => {
-        auth.getContentFromToken()
-        .then((res) => {
-            if(res) {
-                setLoggedIn(true);
-                setCurrentEmail(res.email);
-                history.push('/');
-            }
-        })
-        .catch((err) => console.log(err));
-    }, [history])
+        if (loggedIn) {
+            auth.getContentFromToken()
+            .then((res) => {
+                if(res) {
+                    setLoggedIn(true);
+                    setCurrentEmail(res.email);
+                    history.push('/');
+                }
+            })
+            .catch((err) => console.log(err));
+        }
+    }, [history, loggedIn])
 
     function getCookiesDelete () {
         auth.getUserExitFromProfile()
