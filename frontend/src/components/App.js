@@ -188,9 +188,7 @@ function App() {
     }
 
     React.useEffect(() => {
-        if (loggedIn) {
-            getUserEmail();
-        }
+        getUserEmail();
     }, [getUserEmail, loggedIn]);
 
     function getRegisteredIn() {
