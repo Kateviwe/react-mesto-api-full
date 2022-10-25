@@ -187,9 +187,9 @@ function App() {
         .catch((err) => console.log(err));
     }
 
-    React.useEffect(() => {
-        getUserEmail();
-    }, [getUserEmail, loggedIn]);
+    // React.useEffect(() => {
+    //     getUserEmail();
+    // }, [getUserEmail]);
 
     function getRegisteredIn() {
         setRegisteredIn(true);
