@@ -70,11 +70,13 @@ function App() {
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
-        api.getCardsFromServer()
-            .then((initialCards) => {
-                setCards(initialCards.reverse());
-            })
-            .catch((err) => console.log(err))
+        if (loggedIn) {
+            api.getCardsFromServer()
+                .then((initialCards) => {
+                    setCards(initialCards.reverse());
+                })
+                .catch((err) => console.log(err))
+        }
     }, [loggedIn]); //[] - массив с переменными, изменение хотя бы 1 из которых должно провоцировать выполнение хука (зависимости)
             //У нас массив пустой, следовательно, такой эффект будет вызван всего один раз (монтирование)
 
