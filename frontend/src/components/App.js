@@ -167,7 +167,7 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    const getUserEmail = React.useCallback(() => {
+    function getUserEmail() {
          auth.getContentFromToken()
         .then((res) => {
             if(res) {
@@ -177,9 +177,9 @@ function App() {
             }
         })
         .catch((err) => console.log(err));
-    }, [history])
+    }
 
-    function getCookiesDelete () {
+    function getCookiesDelete() {
         auth.getUserExitFromProfile()
         .then((res) => {
             setLoggedIn(false);
