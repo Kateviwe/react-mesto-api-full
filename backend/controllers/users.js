@@ -47,7 +47,7 @@ module.exports.postNewUser = (req, res, next) => {
   // Применим метод hash для хеширования пароля пользователя
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-        name, about, avatar, email, password: hash,
+      name, about, avatar, email, password: hash,
     }))
     .then((user) => {
       res.send({
@@ -55,8 +55,8 @@ module.exports.postNewUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === 'ConflictError') {
-        // 409
+      if (err.code === 11000) {
+        // 11000
         next(new UserDuplicationError('Пользователь с таким email уже существует'));
       } else if (err.name === 'ValidationError') {
       // ValidationError - ошибка валидации в mongoose

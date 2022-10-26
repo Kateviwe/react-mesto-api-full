@@ -23,7 +23,8 @@ module.exports.deleteNecessaryCard = (req, res, next) => {
     .orFail(new NotFoundError('Запрашиваемая карточка не найдена'))
     .then((card) => {
       if (JSON.stringify(card.owner) === JSON.stringify(req.user._id)) {
-        // Асинхронный метод (ждем завершения операции прежде, чем отправлять ответ) => используем then
+        // Асинхронный метод (ждем завершения операции прежде,
+        // чем отправлять ответ) => используем then
         return card.remove()
           .then(() => res.send({ message: 'Карточка удалена' }));
       }
